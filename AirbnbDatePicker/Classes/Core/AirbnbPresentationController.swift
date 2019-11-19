@@ -130,10 +130,14 @@ fileprivate extension AirbnbPresentationController {
 
         let presentationWrapperView = UIView(frame: frameOfPresentedViewInContainerView)
         presentationWrappingView = presentationWrapperView
-        presentationWrapperView.layer.shadowColor = UIColor.black.cgColor
+        if #available(iOS 13.0, *) {
+            presentationWrapperView.layer.shadowColor = UIColor.label.cgColor
+        } else {
+            presentationWrapperView.layer.shadowColor = UIColor.black.cgColor
+        }
         presentationWrapperView.layer.shadowOffset = CGSize(width: 0, height: 4)
         presentationWrapperView.layer.shadowOpacity = 0.2
-        presentationWrapperView.layer.shadowRadius = 6
+        presentationWrapperView.layer.shadowRadius = 16
 
         // presentationRoundedCornerView is CORNER_RADIUS points taller than the
         // height of the presented view controller's view.  This is because
@@ -143,7 +147,7 @@ fileprivate extension AirbnbPresentationController {
         // the bottom edge of the screen.
         let presentationRoundedCornerView = UIView(frame: presentationWrapperView.bounds)
         presentationRoundedCornerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        presentationRoundedCornerView.layer.cornerRadius = 4
+        presentationRoundedCornerView.layer.cornerRadius = 14
         presentationRoundedCornerView.clipsToBounds = true
 
         // To undo the extra height added to presentationRoundedCornerView,
