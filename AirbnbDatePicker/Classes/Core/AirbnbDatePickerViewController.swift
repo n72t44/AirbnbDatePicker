@@ -90,8 +90,12 @@ public extension AirbnbDatePickerViewController {
 
 fileprivate extension AirbnbDatePickerViewController {
     func prepareView() {
-        view.backgroundColor = .white
-
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
+        
         prepareTitleView()
         prepareCollectionView()
         prepareWeekdayStackView()
@@ -103,7 +107,11 @@ fileprivate extension AirbnbDatePickerViewController {
 
     func prepareTitleView() {
         clearButton.setTitle(NSLocalizedString("Clear", comment: ""), for: .normal)
-        clearButton.setTitleColor(.darkGray, for: .normal)
+        if #available(iOS 13.0, *) {
+            clearButton.setTitleColor(.secondaryLabel, for: .normal)
+        } else {
+            clearButton.setTitleColor(.darkGray, for: .normal)
+        }
         clearButton.setTitleColor(.disabled, for: .disabled)
 
         clearButton.titleLabel?.font = Font.medium(ofSize: 14)
@@ -124,7 +132,11 @@ fileprivate extension AirbnbDatePickerViewController {
     }
     
     func prepareCollectionView() {
-        collectionView.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            collectionView.backgroundColor = .systemBackground
+        } else {
+            collectionView.backgroundColor = .white
+        }
         collectionView.register(AirbnbDatePickerCollectionViewCell.self, forCellWithReuseIdentifier: AirbnbDatePickerCollectionViewCell.className)
         collectionView.register(AirbnbDatePickerHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AirbnbDatePickerHeaderView.className)
         collectionView.showsVerticalScrollIndicator = false
