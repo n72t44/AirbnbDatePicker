@@ -107,11 +107,7 @@ fileprivate extension AirbnbDatePickerViewController {
 
     func prepareTitleView() {
         clearButton.setTitle(NSLocalizedString("Clear", comment: ""), for: .normal)
-        if #available(iOS 13.0, *) {
-            clearButton.setTitleColor(.secondaryLabel, for: .normal)
-        } else {
-            clearButton.setTitleColor(.darkGray, for: .normal)
-        }
+        clearButton.setTitleColor(.main, for: .normal)
         clearButton.setTitleColor(.disabled, for: .disabled)
 
         clearButton.titleLabel?.font = Font.medium(ofSize: 14)
