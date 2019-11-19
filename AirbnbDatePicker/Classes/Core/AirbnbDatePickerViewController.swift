@@ -107,7 +107,7 @@ fileprivate extension AirbnbDatePickerViewController {
 
     func prepareTitleView() {
         clearButton.setTitle(NSLocalizedString("Clear", comment: ""), for: .normal)
-        clearButton.setTitleColor(.main, for: .normal)
+        clearButton.setTitleColor(.button, for: .normal)
         clearButton.setTitleColor(.disabled, for: .disabled)
 
         clearButton.titleLabel?.font = Font.medium(ofSize: 14)
@@ -143,7 +143,7 @@ fileprivate extension AirbnbDatePickerViewController {
 
     func prepareActionButton() {
         actionButton.setTitle(actionTitle, for: .normal)
-        actionButton.setTitleColor(.main, for: .normal)
+        actionButton.setTitleColor(.button, for: .normal)
         actionButton.setTitleColor(.disabled, for: .disabled)
         actionButton.titleLabel?.font = Font.medium(ofSize: 16)
         actionButton.addTarget(self, action: #selector(didClickActionButton), for: .touchUpInside)

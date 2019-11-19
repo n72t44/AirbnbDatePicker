@@ -13,6 +13,7 @@ public struct ThemeManager {
     public var disabledColor = UIColor(hexString: "#d4d4d4")
     public var separatorColor = UIColor(hexString: "#ebebeb")
     public var placeholderColor = UIColor(hexString: "#888888")
+    public var buttonColor = UIColor(hexString: "#0000FF")
 
     public init() {}
 }

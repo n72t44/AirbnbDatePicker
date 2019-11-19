@@ -10,8 +10,9 @@ import Foundation
 extension Date {
     var shortDateString: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd"
-
+        //dateFormatter.dateFormat = "MMM dd"
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
         return dateFormatter.string(from: self)
     }
 }

@@ -43,5 +43,5 @@ extension UIColor {
     static var disabled: UIColor { return ThemeManager.current.disabledColor }
     static var separator: UIColor { return ThemeManager.current.separatorColor }
     static var placeholder: UIColor { return ThemeManager.current.placeholderColor }
-
+    static var button: UIColor { return ThemeManager.current.buttonColor }
 }

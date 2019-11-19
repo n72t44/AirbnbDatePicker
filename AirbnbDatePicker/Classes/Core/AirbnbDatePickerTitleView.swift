@@ -54,7 +54,7 @@ fileprivate extension AirbnbDatePickerTitleView {
         separatorContainerView.translatesAutoresizingMaskIntoConstraints = false
 
         let stackView = UIStackView(arrangedSubviews: [startLabel, separatorContainerView, endLabel])
-        stackView.spacing = 8
+        stackView.spacing = 4
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -120,7 +120,7 @@ fileprivate extension AirbnbDatePickerTitleView {
 
 fileprivate extension AirbnbDatePickerTitleView {
     enum Config {
-        static let titleFont = Font.medium(ofSize: 16)
+        static let titleFont = Font.medium(ofSize: 14)
         static let endDateString = NSLocalizedString("End Date", comment: "")
         static let defaultTitle = NSLocalizedString("Select dates", comment: "")
     }
