@@ -130,11 +130,7 @@ fileprivate extension AirbnbPresentationController {
 
         let presentationWrapperView = UIView(frame: frameOfPresentedViewInContainerView)
         presentationWrappingView = presentationWrapperView
-        if #available(iOS 13.0, *) {
-            presentationWrapperView.layer.shadowColor = UIColor.label.cgColor
-        } else {
-            presentationWrapperView.layer.shadowColor = UIColor.black.cgColor
-        }
+        presentationWrapperView.layer.shadowColor = UIColor.black.cgColor
         presentationWrapperView.layer.shadowOffset = CGSize(width: 0, height: 4)
         presentationWrapperView.layer.shadowOpacity = 0.2
         presentationWrapperView.layer.shadowRadius = 16
