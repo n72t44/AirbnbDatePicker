@@ -11,7 +11,7 @@ public class AirbnbPresentationController: UIPresentationController {
 
     // MARK: - Views
 
-    lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+    lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
     var presentationWrappingView: UIView?
 
     // MARK: - Overrides
