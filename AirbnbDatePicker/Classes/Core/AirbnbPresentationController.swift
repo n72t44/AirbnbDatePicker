@@ -11,7 +11,7 @@ public class AirbnbPresentationController: UIPresentationController {
 
     // MARK: - Views
 
-    lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
+    lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
     var presentationWrappingView: UIView?
 
     // MARK: - Overrides
@@ -37,11 +37,11 @@ public class AirbnbPresentationController: UIPresentationController {
     }
 
     public override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
-        let horizontalPadding: CGFloat = 16
+        let horizontalPadding: CGFloat = 32
 
         var size = parentSize
         size.width -= horizontalPadding*2
-        size.height = size.height * 2 / 3
+        size.height = size.height * 0.6
 
         return size
     }
