@@ -55,7 +55,11 @@ fileprivate extension AirbnbDatePickerCollectionViewCell {
         contentView.addSubview(circleView)
         contentView.addSubview(rectangleView)
         
-        contentView.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            contentView.backgroundColor = .systemBackground
+        } else {
+            contentView.backgroundColor = .white
+        }
         contentView.addSubview(label)
     }
     
@@ -81,7 +85,11 @@ fileprivate extension AirbnbDatePickerCollectionViewCell {
         }
         
         if day.options.contains(.selected) {
-            label.textColor = .white
+            if #available(iOS 13.0, *) {
+                label.textColor = .systemBackground
+            } else {
+                label.textColor = .white
+            }
             switch day.options.intersection([.selectedStart, .selectedEnd]) {
             case [.selectedStart]: // left half circle
                 setupCircleView(in: rect)
