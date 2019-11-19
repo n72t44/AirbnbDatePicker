@@ -11,7 +11,7 @@ public class AirbnbPresentationController: UIPresentationController {
 
     // MARK: - Views
 
-    lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+    var blurView : UIVisualEffectView
     var presentationWrappingView: UIView?
 
     // MARK: - Overrides
@@ -21,6 +21,11 @@ public class AirbnbPresentationController: UIPresentationController {
     }
 
     public override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
+        if #available(iOS 13.0, *) {
+            blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+        } else {
+            blurView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
+        }
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         presentedViewController.modalPresentationStyle = .custom
         presentedViewController.modalPresentationCapturesStatusBarAppearance = true
