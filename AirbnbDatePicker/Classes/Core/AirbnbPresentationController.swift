@@ -78,12 +78,13 @@ public class AirbnbPresentationController: UIPresentationController {
         preparePresentationWrappingView()
         prepareBlurView()
 
-        let transitionCoordinator = presentingViewController.transitionCoordinator
-        self.blurView.alpha = 0
-
+        //let transitionCoordinator = presentingViewController.transitionCoordinator
+        self.blurView.alpha = 1
+/*
         transitionCoordinator?.animate(alongsideTransition: { _ in
             self.blurView.alpha = 1
         })
+ */
     }
 
     public override func dismissalTransitionWillBegin() {
