@@ -32,11 +32,13 @@ public extension DatePicker where Base: UIViewController {
     func presentDatePickerViewController(dateInterval: DateInterval, selectedDateInterval: DateInterval?, delegate: AirbnbDatePickerViewControllerDelegate?, calendar: Calendar = .current) {
         let datePickerViewController = AirbnbDatePickerViewController(dateInterval: dateInterval, selectedDateInterval: selectedDateInterval)
         datePickerViewController.delegate = delegate
-        //let presentationController = AirbnbPresentationController(presentedViewController: datePickerViewController, presenting: base)
-
+        
         if !ThemeManager.current.modal {
-           datePickerViewController.transitioningDelegate = AirbnbPresentationController(presentedViewController: datePickerViewController, presenting: base)
+            let presentationController = AirbnbPresentationController(presentedViewController: datePickerViewController, presenting: base)
+            datePickerViewController.transitioningDelegate = presentationController
+            base.present(datePickerViewController, animated: true, completion: nil)
+        } else {
+            base.present(datePickerViewController, animated: true, completion: nil)
         }
-        base.present(datePickerViewController, animated: true, completion: nil)
     }
 }
