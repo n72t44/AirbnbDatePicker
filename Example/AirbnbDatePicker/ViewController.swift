@@ -12,9 +12,10 @@ class ViewController: UIViewController {
 
     // MARK: - Properties
 
-    private lazy var datePickerTheme: ThemeManager = {
+    private var datePickerTheme: ThemeManager = {
         var theme = ThemeManager()
         theme.mainColor = UIColor(red: 241/255, green: 107/255, blue: 111/255, alpha: 1)
+        theme.modal = true
         return theme
     }()
 

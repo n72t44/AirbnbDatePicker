@@ -13,7 +13,7 @@ public protocol AirbnbDatePickerCompatible {
 }
 
 public extension AirbnbDatePickerCompatible {
-    public var dp: DatePicker<Self> {
+    var dp: DatePicker<Self> {
         return DatePicker(self)
     }
 }
@@ -29,13 +29,14 @@ public struct DatePicker<Base> {
 extension UIViewController: AirbnbDatePickerCompatible {}
 
 public extension DatePicker where Base: UIViewController {
-    public func presentDatePickerViewController(dateInterval: DateInterval, selectedDateInterval: DateInterval?, delegate: AirbnbDatePickerViewControllerDelegate?, calendar: Calendar = .current) {
+    func presentDatePickerViewController(dateInterval: DateInterval, selectedDateInterval: DateInterval?, delegate: AirbnbDatePickerViewControllerDelegate?, calendar: Calendar = .current) {
         let datePickerViewController = AirbnbDatePickerViewController(dateInterval: dateInterval, selectedDateInterval: selectedDateInterval)
         datePickerViewController.delegate = delegate
+        //let presentationController = AirbnbPresentationController(presentedViewController: datePickerViewController, presenting: base)
 
-        let presentationController = AirbnbPresentationController(presentedViewController: datePickerViewController, presenting: base)
-        datePickerViewController.transitioningDelegate = presentationController
-
+        if !ThemeManager.current.modal {
+           datePickerViewController.transitioningDelegate = AirbnbPresentationController(presentedViewController: datePickerViewController, presenting: base)
+        }
         base.present(datePickerViewController, animated: true, completion: nil)
     }
 }

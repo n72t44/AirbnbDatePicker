@@ -180,17 +180,30 @@ fileprivate extension AirbnbDatePickerViewController {
         stackView.axis = .vertical
 
         view.addSubview(stackView)
-        NSLayoutConstraint.activate([
-            headerView.heightAnchor.constraint(equalToConstant: Config.headerViewHeight),
-            weekdayHeaderStackView.heightAnchor.constraint(equalToConstant: Config.weekdayHeaderHeight),
-            headerSeparator.heightAnchor.constraint(equalToConstant: 1),
-            footerSeparator.heightAnchor.constraint(equalToConstant: 1),
-            actionButton.heightAnchor.constraint(equalToConstant: 44),
-            stackView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                headerView.heightAnchor.constraint(equalToConstant: Config.headerViewHeight),
+                weekdayHeaderStackView.heightAnchor.constraint(equalToConstant: Config.weekdayHeaderHeight),
+                headerSeparator.heightAnchor.constraint(equalToConstant: 1),
+                footerSeparator.heightAnchor.constraint(equalToConstant: 1),
+                actionButton.heightAnchor.constraint(equalToConstant: 44),
+                stackView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+                stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                stackView.bottomAnchor.constraint(equalTo: view!.safeAreaLayoutGuide.bottomAnchor)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                headerView.heightAnchor.constraint(equalToConstant: Config.headerViewHeight),
+                weekdayHeaderStackView.heightAnchor.constraint(equalToConstant: Config.weekdayHeaderHeight),
+                headerSeparator.heightAnchor.constraint(equalToConstant: 1),
+                footerSeparator.heightAnchor.constraint(equalToConstant: 1),
+                actionButton.heightAnchor.constraint(equalToConstant: 44),
+                stackView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+                stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])        }
     }
 }
 

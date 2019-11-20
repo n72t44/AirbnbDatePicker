@@ -14,12 +14,12 @@ public struct ThemeManager {
     public var separatorColor = UIColor(hexString: "#ebebeb")
     public var placeholderColor = UIColor(hexString: "#888888")
     public var buttonColor = UIColor(hexString: "#0000FF")
-    public var wantBlur = true
+    public var modal = false
 
     public init() {}
 }
 
 public extension ThemeManager {
-    public static let `default` = ThemeManager()
-    public static var current: ThemeManager = .default
+    static let `default` = ThemeManager()
+    static var current: ThemeManager = .default
 }
