@@ -15,4 +15,19 @@ enum Font {
     static func medium(ofSize size: CGFloat) -> UIFont {
         return UIFont.systemFont(ofSize: size, weight: .medium)
     }
+    
+    static func bold(ofSize size: CGFloat) -> UIFont {
+        return UIFont.systemFont(ofSize: size, weight: .bold)
+    }
+    
+    static var smallSize : CGFloat {
+        get {
+            return ThemeManager.current.modal ? 17 : 14
+        }
+    }
+    static var mediumSize : CGFloat {
+        get {
+            return ThemeManager.current.modal ? 20 : 16
+        }
+    }
 }

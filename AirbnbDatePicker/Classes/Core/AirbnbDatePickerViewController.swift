@@ -10,6 +10,7 @@ import UIKit
 
 @objc public protocol AirbnbDatePickerViewControllerDelegate: class {
     @objc optional func datePickerController(_ picker: AirbnbDatePickerViewController, didFinishPicking dateInterval: DateInterval?)
+    @objc optional func didDismissDatePickerController(_ picker: AirbnbDatePickerViewController)
 }
 
 public class AirbnbDatePickerViewController: UIViewController {
@@ -67,6 +68,11 @@ public class AirbnbDatePickerViewController: UIViewController {
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
+    
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.delegate?.didDismissDatePickerController?(self)
+    }
 }
 
 // MARK: - Button events
@@ -83,6 +89,10 @@ public extension AirbnbDatePickerViewController {
         viewModel.clear()
         updateUI()
     }
+    
+    @objc func didClickDismissButton(_ button: UIButton) { // TODO
+        dismiss(animated: true)
+    }
 }
 
 
@@ -91,9 +101,9 @@ public extension AirbnbDatePickerViewController {
 fileprivate extension AirbnbDatePickerViewController {
     func prepareView() {
         if #available(iOS 13.0, *) {
-            view.backgroundColor = .systemBackground
+            view.backgroundColor = ThemeManager.current.headFootColor ?? .systemBackground
         } else {
-            view.backgroundColor = .white
+            view.backgroundColor = ThemeManager.current.headFootColor ?? .white
         }
         
         prepareTitleView()
@@ -110,7 +120,7 @@ fileprivate extension AirbnbDatePickerViewController {
         clearButton.setTitleColor(.button, for: .normal)
         clearButton.setTitleColor(.disabled, for: .disabled)
 
-        clearButton.titleLabel?.font = Font.medium(ofSize: 14)
+        clearButton.titleLabel?.font = Font.medium(ofSize: Font.smallSize)
         clearButton.addTarget(self, action: #selector(didClickClearButton(_:)), for: .touchUpInside)
         clearButton.translatesAutoresizingMaskIntoConstraints = false
 
@@ -145,7 +155,7 @@ fileprivate extension AirbnbDatePickerViewController {
         actionButton.setTitle(actionTitle, for: .normal)
         actionButton.setTitleColor(.button, for: .normal)
         actionButton.setTitleColor(.disabled, for: .disabled)
-        actionButton.titleLabel?.font = Font.medium(ofSize: 16)
+        actionButton.titleLabel?.font = Font.medium(ofSize: Font.mediumSize)
         actionButton.addTarget(self, action: #selector(didClickActionButton), for: .touchUpInside)
     }
 
@@ -154,7 +164,7 @@ fileprivate extension AirbnbDatePickerViewController {
             let label = UILabel()
             label.text = symbol
             label.textColor = .text
-            label.font = Font.medium(ofSize: 12)
+            label.font = Font.medium(ofSize: 13)
             label.textAlignment = .center
             
             return label
@@ -286,6 +296,6 @@ fileprivate extension AirbnbDatePickerViewController {
         static let weekdayHeaderHeight: CGFloat = 32
         static let headerViewHeight: CGFloat = 44
 
-        static let titleFont = Font.medium(ofSize: 14)
+        static let titleFont = Font.medium(ofSize: Font.smallSize)
     }
 }

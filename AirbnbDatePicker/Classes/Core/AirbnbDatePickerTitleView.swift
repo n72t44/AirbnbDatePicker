@@ -120,7 +120,7 @@ fileprivate extension AirbnbDatePickerTitleView {
 
 fileprivate extension AirbnbDatePickerTitleView {
     enum Config {
-        static let titleFont = Font.medium(ofSize: 14)
+        static let titleFont = Font.medium(ofSize: Font.smallSize)
         static let endDateString = NSLocalizedString("End Date", comment: "")
         static let defaultTitle = NSLocalizedString("Select dates", comment: "")
     }

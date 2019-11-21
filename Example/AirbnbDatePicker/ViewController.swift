@@ -16,6 +16,9 @@ class ViewController: UIViewController {
         var theme = ThemeManager()
         theme.mainColor = UIColor(red: 241/255, green: 107/255, blue: 111/255, alpha: 1)
         theme.modal = true
+        theme.headFootColor = .yellow
+        theme.circleCurrent = false
+        theme.separatorColor = UIColor.black
         return theme
     }()
 
@@ -54,5 +57,8 @@ class ViewController: UIViewController {
 extension ViewController: AirbnbDatePickerViewControllerDelegate {
     func datePickerController(_ picker: AirbnbDatePickerViewController, didFinishPicking dateInterval: DateInterval?) {
         selectedDateInterval = dateInterval
+    }
+    func didDismissDatePickerController(_ picker: AirbnbDatePickerViewController) {
+        selectedDateInterval = nil
     }
 }

@@ -49,7 +49,7 @@ class AirbnbDatePickerCollectionViewCell: UICollectionViewCell {
 fileprivate extension AirbnbDatePickerCollectionViewCell {
     func prepareView() {
         label.textColor = .text
-        label.font = Font.regular(ofSize: 16)
+        label.font = Font.regular(ofSize: Font.mediumSize)
         
         contentView.addSubview(roundedView)
         contentView.addSubview(circleView)
@@ -73,7 +73,7 @@ fileprivate extension AirbnbDatePickerCollectionViewCell {
         label.isHidden = day.options.contains(.empty)
         label.textColor = day.options.contains(.unselectable) ? .disabled : .text
         
-        if day.options.contains(.today) {
+        if day.options.contains(.today) && ThemeManager.current.circleCurrent {
             setupRoundedView(in: rect)
             
             contentView.addSubview(roundedView)
