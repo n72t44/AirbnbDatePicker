@@ -19,6 +19,9 @@ class ViewController: UIViewController {
         theme.headFootColor = .yellow
         theme.circleCurrent = false
         theme.separatorColor = UIColor.black
+        theme.legendColor = .red
+        theme.placeholderColor = .red
+        //theme.textColor = .red
         return theme
     }()
 

@@ -163,7 +163,7 @@ fileprivate extension AirbnbDatePickerViewController {
         let arrangedSubviews = calendar.veryShortWeekdaySymbols.map { symbol -> UILabel in
             let label = UILabel()
             label.text = symbol
-            label.textColor = .text
+            label.textColor = .legend
             label.font = Font.medium(ofSize: 13)
             label.textAlignment = .center
             

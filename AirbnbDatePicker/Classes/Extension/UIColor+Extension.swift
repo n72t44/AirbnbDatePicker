@@ -39,6 +39,7 @@ extension UIColor {
 
 
     static var text: UIColor { return ThemeManager.current.textColor }
+    static var legend: UIColor { return ThemeManager.current.legendColor }
     static var main: UIColor { return ThemeManager.current.mainColor }
     static var disabled: UIColor { return ThemeManager.current.disabledColor }
     static var separator: UIColor { return ThemeManager.current.separatorColor }
