@@ -15,6 +15,8 @@ public struct ThemeManager {
     public var separatorColor = UIColor(hexString: "#ebebeb")
     public var placeholderColor = UIColor(hexString: "#888888")
     public var buttonColor = UIColor(hexString: "#0000FF")
+    public var monthNameColor = UIColor(hexString: "#444444")
+
     public var modal = false
     public var circleCurrent = true
     public var headFootColor : UIColor?
