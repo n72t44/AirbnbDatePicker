@@ -97,7 +97,7 @@ fileprivate extension AirbnbDatePickerTitleView {
 
             startLabel.attributedText = attrString(for: start.shortDateString)
             startLabel.textColor = .legend
-            separator.backgroundColor = .text
+            separator.backgroundColor = .legend
             endLabel.attributedText = attrString(for: end.shortDateString)
             endLabel.textColor = .legend
         default:

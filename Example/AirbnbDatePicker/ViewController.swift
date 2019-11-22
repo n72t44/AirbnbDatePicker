@@ -18,10 +18,10 @@ class ViewController: UIViewController {
         theme.modal = true
         theme.headFootColor = .yellow
         theme.circleCurrent = false
-        theme.separatorColor = UIColor.black
-        theme.legendColor = .red
-        theme.placeholderColor = .red
-        //theme.textColor = .red
+        theme.separatorColor = .black
+        theme.legendColor = .green
+        theme.placeholderColor = .purple
+        theme.textColor = .red
         return theme
     }()
 
