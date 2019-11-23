@@ -14,7 +14,8 @@ import UIKit
 }
 
 public class AirbnbDatePickerViewController: UIViewController {
-
+    private var noDismissNotification = false
+    
     // MARK: - Public properties
 
     public weak var delegate: AirbnbDatePickerViewControllerDelegate?
@@ -38,6 +39,7 @@ public class AirbnbDatePickerViewController: UIViewController {
     private let headerView = UIView()
     private let titleView = AirbnbDatePickerTitleView(period: (nil, nil))
     private let clearButton = UIButton(type: .system)
+    private let dismissButton = UIButton(type: .system)
     private let actionButton = UIButton(type: .system)
     
     // MARK: - Life cycle
@@ -71,7 +73,11 @@ public class AirbnbDatePickerViewController: UIViewController {
     
     public override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.delegate?.didDismissDatePickerController?(self)
+        if !noDismissNotification {
+            delegate?.didDismissDatePickerController?(self)
+        } else {
+            noDismissNotification = true
+        }
     }
 }
 
@@ -79,6 +85,7 @@ public class AirbnbDatePickerViewController: UIViewController {
 
 public extension AirbnbDatePickerViewController {
     @objc func didClickActionButton(_ button: UIButton) {
+        noDismissNotification = true
         dismiss(animated: true) { [weak self] in
             guard let `self` = self else { return }
             self.delegate?.datePickerController?(self, didFinishPicking: self.viewModel.selectedDateInterval)
@@ -91,6 +98,7 @@ public extension AirbnbDatePickerViewController {
     }
     
     @objc func didClickDismissButton(_ button: UIButton) { // TODO
+        noDismissNotification = false
         dismiss(animated: true)
     }
 }
@@ -124,8 +132,17 @@ fileprivate extension AirbnbDatePickerViewController {
         clearButton.addTarget(self, action: #selector(didClickClearButton(_:)), for: .touchUpInside)
         clearButton.translatesAutoresizingMaskIntoConstraints = false
 
+        dismissButton.setTitle(NSLocalizedString("Dismiss", comment: ""), for: .normal)
+        dismissButton.setTitleColor(.button, for: .normal)
+        dismissButton.titleLabel?.font = Font.regular(ofSize: Font.smallSize)
+        dismissButton.addTarget(self, action: #selector(didClickDismissButton(_:)), for: .touchUpInside)
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
+
         titleView.translatesAutoresizingMaskIntoConstraints = false
 
+        if ThemeManager.current.modal {
+            headerView.addSubview(dismissButton)
+        }
         headerView.addSubview(titleView)
         headerView.addSubview(clearButton)
 
@@ -133,8 +150,14 @@ fileprivate extension AirbnbDatePickerViewController {
             titleView.separator.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
             titleView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
             clearButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-            clearButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -20)
+            clearButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -20),
         ])
+        if ThemeManager.current.modal {
+            NSLayoutConstraint.activate([
+                dismissButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+                dismissButton.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20),
+            ])
+        }
     }
     
     func prepareCollectionView() {

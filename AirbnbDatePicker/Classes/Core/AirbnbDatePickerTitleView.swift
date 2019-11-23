@@ -73,7 +73,7 @@ fileprivate extension AirbnbDatePickerTitleView {
             separator.trailingAnchor.constraint(equalTo: separatorContainerView.trailingAnchor),
             separator.centerYAnchor.constraint(equalTo: centerYAnchor),
             separator.heightAnchor.constraint(equalToConstant: 1),
-            separatorContainerView.widthAnchor.constraint(equalToConstant: 12),
+            separatorContainerView.widthAnchor.constraint(equalToConstant: 10),
             titleLabel.centerXAnchor.constraint(equalTo: separator.centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: separator.centerYAnchor),
             stackCenterXConstraint,
