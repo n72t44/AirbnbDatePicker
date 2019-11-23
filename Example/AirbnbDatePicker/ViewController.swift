@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         theme.legendColor = .green
         theme.placeholderColor = .purple
         theme.textColor = .red
+        theme.dismissIcon = nil
         return theme
     }()
 

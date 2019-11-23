@@ -39,7 +39,7 @@ public class AirbnbDatePickerViewController: UIViewController {
     private let headerView = UIView()
     private let titleView = AirbnbDatePickerTitleView(period: (nil, nil))
     private let clearButton = UIButton(type: .system)
-    private let dismissButton = UIButton(type: .system)
+    private var dismissButton : UIButton?
     private let actionButton = UIButton(type: .system)
     
     // MARK: - Life cycle
@@ -131,17 +131,24 @@ fileprivate extension AirbnbDatePickerViewController {
         clearButton.titleLabel?.font = Font.medium(ofSize: Font.smallSize)
         clearButton.addTarget(self, action: #selector(didClickClearButton(_:)), for: .touchUpInside)
         clearButton.translatesAutoresizingMaskIntoConstraints = false
-
-        dismissButton.setTitle(NSLocalizedString("Dismiss", comment: ""), for: .normal)
-        dismissButton.setTitleColor(.button, for: .normal)
-        dismissButton.titleLabel?.font = Font.regular(ofSize: Font.smallSize)
-        dismissButton.addTarget(self, action: #selector(didClickDismissButton(_:)), for: .touchUpInside)
-        dismissButton.translatesAutoresizingMaskIntoConstraints = false
-
+        
+        if let dismissIcon = ThemeManager.current.dismissIcon {
+            dismissButton = UIButton(type: .custom)
+            dismissButton?.setImage(dismissIcon, for: .normal)
+            dismissButton?.tintColor = .button
+        } else {
+            dismissButton = UIButton(type: .system)
+            dismissButton?.setTitle(NSLocalizedString("Dismiss", comment: ""), for: .normal)
+            dismissButton?.setTitleColor(.button, for: .normal)
+            dismissButton?.titleLabel?.font = Font.regular(ofSize: Font.smallSize)
+        }
+        dismissButton?.addTarget(self, action: #selector(didClickDismissButton(_:)), for: .touchUpInside)
+        dismissButton?.translatesAutoresizingMaskIntoConstraints = false
+        
         titleView.translatesAutoresizingMaskIntoConstraints = false
 
-        if ThemeManager.current.modal {
-            headerView.addSubview(dismissButton)
+        if ThemeManager.current.modal && dismissButton != nil {
+            headerView.addSubview(dismissButton!)
         }
         headerView.addSubview(titleView)
         headerView.addSubview(clearButton)
@@ -150,12 +157,12 @@ fileprivate extension AirbnbDatePickerViewController {
             titleView.separator.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
             titleView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
             clearButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-            clearButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -20),
+            clearButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -20)
         ])
-        if ThemeManager.current.modal {
+        if ThemeManager.current.modal && dismissButton != nil {
             NSLayoutConstraint.activate([
-                dismissButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-                dismissButton.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20),
+                dismissButton!.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+                dismissButton!.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 20)
             ])
         }
     }

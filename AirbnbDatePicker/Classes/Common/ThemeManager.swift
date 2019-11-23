@@ -20,6 +20,7 @@ public struct ThemeManager {
     public var modal = false
     public var circleCurrent = true
     public var headFootColor : UIColor?
+    public var dismissIcon : UIImage?
 
     public init() {}
 }
