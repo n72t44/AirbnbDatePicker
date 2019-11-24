@@ -220,7 +220,7 @@ fileprivate extension AirbnbDatePickerViewController {
         stackView.axis = .vertical
 
         view.addSubview(stackView)
-        if UIDevice.current.userInterfaceIdiom == .pad && !ThemeManager.current.modal {
+        /*if UIDevice.current.userInterfaceIdiom == .pad && !ThemeManager.current.modal {
             NSLayoutConstraint.activate([
                 headerView.heightAnchor.constraint(equalToConstant: Config.headerViewHeight),
                 weekdayHeaderStackView.heightAnchor.constraint(equalToConstant: Config.weekdayHeaderHeight),
@@ -232,7 +232,7 @@ fileprivate extension AirbnbDatePickerViewController {
                 stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
             ])
-        } else {
+        } else {*/
             if #available(iOS 11.0, *) {
                 NSLayoutConstraint.activate([
                     headerView.heightAnchor.constraint(equalToConstant: Config.headerViewHeight),
@@ -258,7 +258,7 @@ fileprivate extension AirbnbDatePickerViewController {
                     stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
                 ])
             }
-        }
+        //}
     }
 }
 
