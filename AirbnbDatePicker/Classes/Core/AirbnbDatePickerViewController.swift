@@ -57,8 +57,6 @@ public class AirbnbDatePickerViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        self.preferredContentSize = CGSize(width: 100, height: 100)
-
         prepareView()
         
         collectionView.reloadData()
