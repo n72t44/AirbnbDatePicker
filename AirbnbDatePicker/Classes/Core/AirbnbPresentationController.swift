@@ -42,13 +42,15 @@ public class AirbnbPresentationController: UIPresentationController {
     }
 
     public override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
-        let horizontalPadding: CGFloat = 32
-
-        var size = parentSize
-        size.width -= horizontalPadding*2
-        size.height = size.height * 0.6
-
-        return size
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return CGSize(width: 600, height: 600)
+        } else {
+            let horizontalPadding: CGFloat = 32
+            var size = parentSize
+            size.width -= horizontalPadding*2
+            size.height = size.height * 0.6
+            return size
+        }
     }
 
     public override var frameOfPresentedViewInContainerView: CGRect {
