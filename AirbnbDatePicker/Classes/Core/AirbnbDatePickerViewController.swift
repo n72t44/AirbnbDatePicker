@@ -9,7 +9,7 @@
 import UIKit
 
 @objc public protocol AirbnbDatePickerViewControllerDelegate: class {
-    @objc optional func datePickerController(_ picker: AirbnbDatePickerViewController, didFinishPicking dateInterval: DateInterval?)
+    @objc func datePickerController(_ picker: AirbnbDatePickerViewController, didFinishPicking dateInterval: DateInterval?)
     @objc optional func didDismissDatePickerController(_ picker: AirbnbDatePickerViewController)
 }
 
@@ -89,7 +89,7 @@ public extension AirbnbDatePickerViewController {
         noDismissNotification = true
         dismiss(animated: true) { [weak self] in
             guard let `self` = self else { return }
-            self.delegate?.datePickerController?(self, didFinishPicking: self.viewModel.selectedDateInterval)
+            self.delegate?.datePickerController(self, didFinishPicking: self.viewModel.selectedDateInterval)
         }
     }
 
