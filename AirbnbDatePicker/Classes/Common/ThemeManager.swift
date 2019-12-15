@@ -18,6 +18,7 @@ public struct ThemeManager {
     public var monthNameColor = UIColor(hexString: "#444444")
 
     public var modal = false
+    public var blur = true
     public var circleCurrent = true
     public var headFootColor : UIColor?
     public var dismissIcon : UIImage?

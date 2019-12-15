@@ -19,21 +19,25 @@ public class AirbnbPresentationController: UIPresentationController {
     public override var presentedView: UIView? {
         return presentationWrappingView
     }
-
+    
     public override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
-        if #available(iOS 13.0, *) {
-            blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+        if ThemeManager.current.blur {
+            if #available(iOS 13.0, *) {
+                blurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+            } else {
+                blurView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
+            }
         } else {
-            blurView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
+            blurView = UIVisualEffectView(effect: UIBlurEffect(style: .prominent))
         }
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         presentedViewController.modalPresentationStyle = .custom
         presentedViewController.modalPresentationCapturesStatusBarAppearance = true
     }
-
+    
     public override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
         super.preferredContentSizeDidChange(forChildContentContainer: container)
-
+        
         guard let container = container as? UIViewController, container == presentedViewController else { return }
         containerView?.setNeedsLayout()
         UIView.animate(withDuration: Const.transitionDuration, delay: 0, options: [.curveEaseOut], animations: { [weak self] in
@@ -43,7 +47,7 @@ public class AirbnbPresentationController: UIPresentationController {
 
     public override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
         if UIDevice.current.userInterfaceIdiom == .pad {
-            return CGSize(width: 600, height: 600)
+            return CGSize(width: 400, height: 400)
         } else {
             let horizontalPadding: CGFloat = 32
             var size = parentSize
