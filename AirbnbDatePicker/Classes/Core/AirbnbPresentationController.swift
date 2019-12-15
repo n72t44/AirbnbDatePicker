@@ -28,7 +28,7 @@ public class AirbnbPresentationController: UIPresentationController {
                 blurView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
             }
         } else {
-            blurView = UIVisualEffectView(effect: UIBlurEffect(style: .prominent))
+            blurView = UIVisualEffectView(effect: nil)
         }
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         presentedViewController.modalPresentationStyle = .custom
