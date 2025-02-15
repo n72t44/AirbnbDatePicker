@@ -43,7 +43,7 @@ public class AirbnbDatePickerViewModel: NSObject {
         self.calendar = calendar
         
         var months: [Month] = []
-        calendar.enumerateDates(startingAfter: end, matching: DateComponents(day: 1, hour: 0), matchingPolicy: .strict, direction: .backward) { (date, match, stop) in
+        calendar.enumerateDates(startingAfter: end, matching: DateComponents(day: 1, hour: 0), matchingPolicy: .nextTimePreservingSmallerComponents, direction: .backward) { (date, match, stop) in
             /*guard let date = date, date >= calendar.dateInterval(of: .month, for: dateInterval.start)!.start else {
                 stop = true
                 return
