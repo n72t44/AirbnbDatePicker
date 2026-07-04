@@ -5,7 +5,7 @@
 //  Created by mrfour on 2018/5/2.
 //
 
-import Foundation
+import UIKit
 
 public protocol AirbnbDatePickerCompatible {
     associatedtype CompatibleType

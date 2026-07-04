@@ -5,7 +5,7 @@
 //  Created by mrfour on 2018/4/10.
 //
 
-import Foundation
+import UIKit
 
 enum Font {
     static func regular(ofSize size: CGFloat) -> UIFont {
